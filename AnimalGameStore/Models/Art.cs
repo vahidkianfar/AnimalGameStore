@@ -1,4 +1,5 @@
-﻿namespace AnimalGameStore.Models;
+﻿using Spectre.Console;
+namespace AnimalGameStore.Models;
 
 public class Art
 {
@@ -12,12 +13,15 @@ public class Art
     
     public void PrettyPrint()
     {
-        Console.WriteLine("ID: " + Id);
-        Console.WriteLine("Name: " + Name);
-        Console.WriteLine("hasFake: " + HasFake);
-        Console.WriteLine("BuyPrice: " + BuyPrice);
-        Console.WriteLine("SellPrice: " + SellPrice);
-        Console.WriteLine("Photo: " + Photo);
-        Console.WriteLine("Museum Description: " + MuseumDescription);
+        AnsiConsole.Write(
+            new Table()
+                .AddColumn(new TableColumn("Setting").Centered())
+                .AddColumn(new TableColumn("Details").Centered())
+                .AddRow("Art Name", $"[skyblue1]{Name}[/]")
+                .AddRow("Photo URL", Photo.ToString())
+                .AddRow("Has Fake", HasFake ? "[red]Yes[/]" : "[green]No[/]")
+                .AddRow("Buy Price", $"[skyblue1]{BuyPrice.ToString()}[/]")
+                .AddRow("Sell Price", $"[skyblue1]{SellPrice.ToString()}[/]"));
+        AnsiConsole.MarkupLine($"[skyblue1]Description:[/] [darkolivegreen3_1]{MuseumDescription}[/]");
     }
 }

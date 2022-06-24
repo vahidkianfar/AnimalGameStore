@@ -1,4 +1,6 @@
-﻿namespace AnimalGameStore.Models;
+﻿using Spectre.Console;
+
+namespace AnimalGameStore.Models;
 
 public class Fossils
 {
@@ -11,9 +13,14 @@ public class Fossils
 
   public void PrettyPrint()
   {
-    Console.WriteLine("Name: " + Name);
-    Console.WriteLine("Price: " + Price);
-    Console.WriteLine("Photo URL: " + Photo);
-    Console.WriteLine("Museum Phrase: " + MuseumPhrase);
+    AnsiConsole.Write(
+      new Table()
+        .AddColumn(new TableColumn("Setting").Centered())
+        .AddColumn(new TableColumn("Details").Centered())
+        .AddRow("Fossil Name", $"[skyblue1]{Name}[/]")
+        .AddRow("Photo URL", Photo.ToString())
+        .AddRow("Price", $"[skyblue1]{Price.ToString()}[/]"));
+    AnsiConsole.MarkupLine($"[skyblue1]Description:[/] [darkolivegreen3_1]{MuseumPhrase}[/]");
+    
   }
 }
