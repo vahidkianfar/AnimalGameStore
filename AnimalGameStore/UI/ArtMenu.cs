@@ -8,11 +8,12 @@ public class ArtMenu
     public static void Start()
     {
         var inputArt = AnsiConsole.Ask<int>("Enter Art ID (between 1-43): ");
-        
+        AnsiConsole.MarkupLine("[green]Searching for Art...[/]");
         if (inputArt is > 0 and < 44)
         {
             var art = new Art();
             art = GET.Art(inputArt);
+            
             art.PrettyPrint();
         }
         else

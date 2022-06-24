@@ -9,7 +9,7 @@ public class FossilMenu
     public static void Start()
     {
         var inputFossil = AnsiConsole.Ask<string>("Enter Fossil Name (e.g. amber): ").ToLower();
-        
+        AnsiConsole.MarkupLine("[green]Searching for Fossil...[/]");
         if (!string.IsNullOrEmpty(inputFossil))
         {
             var fossil = new Fossils();
