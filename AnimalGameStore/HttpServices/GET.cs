@@ -6,7 +6,6 @@ namespace AnimalGameStore.HttpServices;
 
 public class GET
 {
-    public HttpClient client = new HttpClient();
     public static Fossils Fossil(string fossilName)
     {
         var client = new HttpClient();
