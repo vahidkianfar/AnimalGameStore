@@ -5,7 +5,7 @@ public class Art
 {
     public int Id { get; set; }
     public string? Name { get; init; }
-    public bool HasFake { get; set; }
+    public bool HasFake { get; init; }
     public int BuyPrice { get; init; }
     public int SellPrice { get; init; }
     public string? MuseumDescription{ get; init; }
