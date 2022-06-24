@@ -12,7 +12,7 @@ public static class ArtMenu
         if (inputArt is > 0 and < 44)
         {
             var art = await GET.Art(inputArt);
-            art.PrettyPrint();
+            art?.PrettyPrint();
         }
         else
         {

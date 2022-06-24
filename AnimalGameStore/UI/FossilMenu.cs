@@ -13,7 +13,7 @@ public static class FossilMenu
             try
             {
                 var fossil = await GET.Fossil(inputFossil);
-                fossil.PrettyPrint();
+                fossil?.PrettyPrint();
             }
             catch (Exception)
             {

@@ -6,7 +6,7 @@ namespace AnimalGameStore.HttpServices;
 
 public static class GET
 {
-    public static async Task<Fossils> Fossil(string fossilName)
+    public static async Task<Fossils?> Fossil(string fossilName)
     {
         using var client = new HttpClient();
         using var response = await client.GetAsync($"https://acnhapi.com/v1/fossils/{fossilName}");
@@ -21,7 +21,8 @@ public static class GET
         };
         return myFossil;
     }
-    public static async Task<Art> Art(int artID)
+    
+    public static async Task<Art?> Art(int artID)
     {
         using var client = new HttpClient();
         using var response = await client.GetAsync($"https://acnhapi.com/v1/art/{artID}");
