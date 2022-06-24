@@ -6,7 +6,7 @@ public static class FossilMenu
 {
     public static async Task Start()
     {
-        var inputFossil = AnsiConsole.Ask<string>("Enter Fossil Name (e.g. amber): ").ToLower();
+        var inputFossil = AnsiConsole.Ask<string>("Enter Fossil Name (e.g. [orange1]amber[/]): ").ToLower();
         AnsiConsole.MarkupLine("[green]Searching for Fossil...[/]");
         if (!string.IsNullOrEmpty(inputFossil))
         {

@@ -6,7 +6,7 @@ public static class ArtMenu
 {
     public static async Task Start()
     {
-        var inputArt = AnsiConsole.Ask<int>("Enter Art ID (between 1-43): ");
+        var inputArt = AnsiConsole.Ask<int>("Enter Art ID (between [green]1-43[/]): ");
         AnsiConsole.MarkupLine("[green]Searching for Art...[/]");
         
         if (inputArt is > 0 and < 44)
