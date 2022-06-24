@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using AnimalGameStore.Models;
 using FluentAssertions;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -30,7 +31,7 @@ public class Tests
         Assert.That(response, Is.Not.Null);
     }
     [Test]
-    public void Http_GET_Convert_Result_To_Json_Object()
+    public void Convert_Result_To_Json_Object()
     {
         var client = new HttpClient();
         var response = client.GetAsync($"https://acnhapi.com/v1/fossils/amber");
@@ -39,7 +40,7 @@ public class Tests
         fossil.Should().BeOfType<JsonObject>();
     }
     [Test]
-    public void Retrieve_Fossil_Name_From_Converted_JSON_Object()
+    public void GET_Fossil_Should_Retrieve_Fossil_Name_From_Converted_JSON_Object()
     {
         var client = new HttpClient();
         var fossilName="amber";
@@ -47,6 +48,24 @@ public class Tests
         var json = response.Result.Content.ReadAsStringAsync().Result;
         var fossil = JsonNode.Parse(json);
 
-        Assert.That(fossil["file-name"]!.ToString(), Is.EqualTo(fossilName));
+        Assert.That(fossil!["file-name"]!.ToString(), Is.EqualTo(fossilName));
+    }
+    [Test]
+    public void GET_Fossil_Should_Return_Fossil_Object()
+    {
+        var result = GET.Fossil("amber");
+        Assert.That(result, Is.TypeOf(typeof(Fossils)));
+    }
+
+    [Test]
+    public void GET_Fossil_Should_Retrieve_Correct_Value_For_FossilName()
+    {
+        var result = GET.Fossil("amber");
+        Assert.Multiple(() =>
+        {
+            Assert.That(result.Name, Is.EqualTo("amber"));
+            Assert.That(result.Price, Is.EqualTo(1200));
+            Assert.That(result.Photo, Is.EqualTo(new Uri("https://acnhapi.com/v1/images/fossils/amber")));
+        });
     }
 }
