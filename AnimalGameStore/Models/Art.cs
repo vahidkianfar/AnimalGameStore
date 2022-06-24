@@ -22,7 +22,7 @@ public class Art
                 .AddRow("Photo URL", Photo!.ToString())
                 .AddRow("Has Fake", HasFake ? "[red]Yes[/]" : "[green]No[/]")
                 .AddRow("Buy Price", $"[skyblue1]{BuyPrice.ToString()}[/]")
-                .AddRow("Sell Price", $"[skyblue1]{SellPrice.ToString()}[/]"));
+                .AddRow("Sell Price", $"[skyblue1]{SellPrice.ToString()}[/]").BorderColor(Color.Yellow2));
         AnsiConsole.MarkupLine($"[skyblue1]Description:[/] [darkolivegreen3_1]{MuseumDescription}[/]");
     }
 }

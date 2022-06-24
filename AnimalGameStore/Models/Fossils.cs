@@ -20,7 +20,7 @@ public class Fossils
         .AddColumn(new TableColumn("Details").Centered())
         .AddRow("Fossil Name", $"[skyblue1]{Name}[/]")
         .AddRow("Photo URL", Photo!.ToString())
-        .AddRow("Price", $"[skyblue1]{Price.ToString()}[/]"));
+        .AddRow("Price", $"[skyblue1]{Price.ToString()}[/]").BorderColor(Color.Yellow2));
     AnsiConsole.MarkupLine($"[skyblue1]Description:[/] [darkolivegreen3_1]{MuseumPhrase}[/]");
     
   }
