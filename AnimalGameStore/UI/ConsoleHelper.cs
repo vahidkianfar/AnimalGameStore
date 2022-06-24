@@ -1,8 +1,7 @@
 ﻿using Spectre.Console;
-
 namespace AnimalGameStore.UI;
 
-public class ConsoleHelper
+public static class ConsoleHelper
 {
      public static int MultipleChoice(bool canCancel, params string[] options)
     {
@@ -17,7 +16,8 @@ public class ConsoleHelper
         do 
         {
             Console.WriteLine();
-            AnsiConsole.Write(new Calendar(DateTime.Now).AddCalendarEvent(DateTime.Today).BorderColor(Color.DarkOliveGreen2));
+            AnsiConsole.Write(new Calendar(DateTime.Now).AddCalendarEvent(DateTime.Today)
+                .BorderColor(Color.DarkOliveGreen2));
             for (var optionCounter = 0; optionCounter < options.Length; optionCounter++)
             {
                 
@@ -28,9 +28,6 @@ public class ConsoleHelper
                 Console.Write(options[optionCounter]);
                 Console.ResetColor();
             }
-            // Console.ForegroundColor = ConsoleColor.Yellow;
-            // Console.WriteLine(CinemaBanner.StartLogo);
-            // Console.ResetColor();
             for (var optionCounter = 0; optionCounter < options.Length; optionCounter++)
             {
                 Console.CursorVisible = false;

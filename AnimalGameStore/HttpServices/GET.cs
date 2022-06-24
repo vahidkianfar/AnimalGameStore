@@ -4,33 +4,28 @@ using Newtonsoft.Json;
 
 namespace AnimalGameStore.HttpServices;
 
-public class GET
+public static class GET
 {
-    public static Fossils Fossil(string fossilName)
+    public static async Task<Fossils> Fossil(string fossilName)
     {
-        var client = new HttpClient();
-      
-        var response = client.GetAsync($"https://acnhapi.com/v1/fossils/{fossilName}");
-        var json = response.Result.Content.ReadAsStringAsync().Result;
+        using var client = new HttpClient();
+        using var response = await client.GetAsync($"https://acnhapi.com/v1/fossils/{fossilName}");
+        var json = await response.Content.ReadAsStringAsync();
         var fossil = JsonNode.Parse(json);
         var myFossil = new Fossils
         {
-            FileName = fossil!["file-name"]!.ToString(),
-            Name = fossil["name"]!["name-USen"]!.ToString(),
+            Name = fossil!["name"]!["name-USen"]!.ToString(),
             Price = JsonConvert.DeserializeObject<int>(fossil["price"]!.ToString()),
             MuseumPhrase = fossil["museum-phrase"]!.ToString(),
             Photo = new Uri (fossil["image_uri"]!.ToString()),
-           
         };
-        
         return myFossil;
     }
-    public static Art Art(int artId)
+    public static async Task<Art> Art(int artID)
     {
-        var client = new HttpClient();
-      
-        var response = client.GetAsync($"https://acnhapi.com/v1/art/{artId}");
-        var json = response.Result.Content.ReadAsStringAsync().Result;
+        using var client = new HttpClient();
+        using var response = await client.GetAsync($"https://acnhapi.com/v1/art/{artID}");
+        var json = await response.Content.ReadAsStringAsync();
         var art = JsonNode.Parse(json);
         var myArt = new Art
         {
@@ -38,6 +33,7 @@ public class GET
             BuyPrice = JsonConvert.DeserializeObject<int>(art["buy-price"]!.ToString()), 
             SellPrice = JsonConvert.DeserializeObject<int>(art["sell-price"]!.ToString()),
             MuseumDescription = art["museum-desc"]!.ToString(),
+            HasFake = (bool)art["hasFake"]!,
             Photo = new Uri (art["image_uri"]!.ToString()),
         };
         return myArt;

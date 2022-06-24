@@ -1,12 +1,8 @@
 using AnimalGameStore.HttpServices;
-using Newtonsoft.Json;
 using NUnit.Framework;
-using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
 using AnimalGameStore.Models;
 using FluentAssertions;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace GameTests;
 
@@ -51,16 +47,16 @@ public class Tests
         Assert.That(fossil!["file-name"]!.ToString(), Is.EqualTo(fossilName));
     }
     [Test]
-    public void GET_Fossil_Should_Return_Fossil_Object()
+    public async Task GET_Fossil_Should_Return_Fossil_Object()
     {
-        var result = GET.Fossil("amber");
+        var result = await GET.Fossil("amber");
         Assert.That(result, Is.TypeOf(typeof(Fossils)));
     }
 
     [Test]
-    public void GET_Fossil_Should_Retrieve_Correct_Value_For_FossilName()
+    public async Task GET_Fossil_Should_Retrieve_Correct_Value_For_FossilName()
     {
-        var result = GET.Fossil("amber");
+        var result = await GET.Fossil("amber");
         Assert.Multiple(() =>
         {
             Assert.That(result.Name, Is.EqualTo("amber"));

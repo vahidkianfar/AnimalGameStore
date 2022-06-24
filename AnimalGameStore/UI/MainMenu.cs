@@ -1,11 +1,9 @@
-﻿using AnimalGameStore.HttpServices;
-using AnimalGameStore.Models;
-using Spectre.Console;
+﻿using Spectre.Console;
 namespace AnimalGameStore.UI;
 
-public class MainMenu
+public static class MainMenu
 {
-    public static void Start()
+    public static async Task Start()
     {
         AnsiConsole.Progress()
             .Start(ctx => 
@@ -23,10 +21,10 @@ public class MainMenu
             switch (selectInstructionOption)
             {
                 case 0:
-                    ArtMenu.Start();
+                    await ArtMenu.Start();
                     break;
                 case 1:
-                    FossilMenu.Start();
+                    await FossilMenu.Start();
                     break;
                 case 2:
                     Environment.Exit(0);

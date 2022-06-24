@@ -1,21 +1,18 @@
 ﻿using AnimalGameStore.HttpServices;
-using AnimalGameStore.Models;
 using Spectre.Console;
-
 namespace AnimalGameStore.UI;
 
-public class FossilMenu
+public static class FossilMenu
 {
-    public static void Start()
+    public static async Task Start()
     {
         var inputFossil = AnsiConsole.Ask<string>("Enter Fossil Name (e.g. amber): ").ToLower();
         AnsiConsole.MarkupLine("[green]Searching for Fossil...[/]");
         if (!string.IsNullOrEmpty(inputFossil))
         {
-            var fossil = new Fossils();
             try
             {
-                fossil = GET.Fossil(inputFossil);
+                var fossil = await GET.Fossil(inputFossil);
                 fossil.PrettyPrint();
             }
             catch (Exception)
@@ -29,7 +26,6 @@ public class FossilMenu
                 Console.Write(" https://acnhapi.com/v1/fossils/");
                 Console.WriteLine();
             }
-            
         }
         else
         {
@@ -37,11 +33,10 @@ public class FossilMenu
             Console.WriteLine("Invalid Fossil Name");
             Console.ResetColor();
         }
-
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
         Console.ResetColor();
-        MainMenu.Start();
+        await Task.Run(MainMenu.Start);
     }
 }

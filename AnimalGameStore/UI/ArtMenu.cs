@@ -1,19 +1,17 @@
 ﻿using AnimalGameStore.HttpServices;
-using AnimalGameStore.Models;
 using Spectre.Console;
 namespace AnimalGameStore.UI;
 
-public class ArtMenu
+public static class ArtMenu
 {
-    public static void Start()
+    public static async Task Start()
     {
         var inputArt = AnsiConsole.Ask<int>("Enter Art ID (between 1-43): ");
         AnsiConsole.MarkupLine("[green]Searching for Art...[/]");
+        
         if (inputArt is > 0 and < 44)
         {
-            var art = new Art();
-            art = GET.Art(inputArt);
-            
+            var art = await GET.Art(inputArt);
             art.PrettyPrint();
         }
         else
@@ -27,7 +25,7 @@ public class ArtMenu
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
         Console.ResetColor();
-        MainMenu.Start();
+        await Task.Run(MainMenu.Start);
     }
     
 }

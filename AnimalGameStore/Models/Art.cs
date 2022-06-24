@@ -4,19 +4,19 @@ namespace AnimalGameStore.Models;
 public class Art
 {
     public int Id { get; set; }
-    public string? Name { get; set; }
+    public string? Name { get; init; }
     public bool HasFake { get; set; }
-    public int BuyPrice { get; set; }
-    public int SellPrice { get; set; }
-    public string? MuseumDescription{ get; set; }
-    public Uri? Photo { get; set; }
+    public int BuyPrice { get; init; }
+    public int SellPrice { get; init; }
+    public string? MuseumDescription{ get; init; }
+    public Uri? Photo { get; init; }
     
     public void PrettyPrint()
     {
         Console.Clear();
         AnsiConsole.Write(
             new Table()
-                .AddColumn(new TableColumn("Setting").Centered())
+                .AddColumn(new TableColumn("Variable").Centered())
                 .AddColumn(new TableColumn("Details").Centered())
                 .AddRow("Art Name", $"[skyblue1]{Name}[/]")
                 .AddRow("Photo URL", Photo!.ToString())
