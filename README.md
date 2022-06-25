@@ -1,6 +1,6 @@
 # AnimalGameStore
 
-You can easily search for Fossil (by name) and Art (by ID) from Animal Crossing API
+You can easily search for Song (by ID) , Fossil (by name) and Art (by ID) from Animal Crossing Game Store.
 
 more info: http://acnhapi.com/doc
 
