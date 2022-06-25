@@ -6,7 +6,7 @@ public class Songs
 {
     public int ID { get; set; }
     public string Name { get; init; }
-    public int? BuyPrice { get; init; }
+    public int BuyPrice { get; init; }
     public int SellPrice { get; init; }
     public bool isOrderable { get; init; }
     public Uri SongDownload { get; init; }

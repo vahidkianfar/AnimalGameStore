@@ -14,7 +14,7 @@ public static class GET
         var mySong = new Songs
         {
             Name = song!["name"]!["name-USen"]!.ToString(),
-            BuyPrice = JsonConvert.DeserializeObject<int>(song["buy-price"]!.ToString()),
+            BuyPrice = song["buy-price"]!=null ? JsonConvert.DeserializeObject<int>(song["buy-price"]!.ToString()) : 0,
             SellPrice = JsonConvert.DeserializeObject<int>(song["sell-price"]!.ToString()),
             isOrderable = (bool)song["isOrderable"]!,
             SongDownload = new Uri(song["music_uri"]!.ToString()),
