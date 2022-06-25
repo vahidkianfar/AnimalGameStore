@@ -20,10 +20,10 @@ public class Songs
                 .AddColumn(new TableColumn("Variable").Centered())
                 .AddColumn(new TableColumn("Details").Centered())
                 .AddRow("Song Name", $"[skyblue1]{Name}[/]")
-                .AddRow("Song Cover", SongCover.ToString())
                 .AddRow("Download Demo", SongDownload.ToString())
                 .AddRow("Is Orderable", isOrderable ? "[green]Yes[/]" : "[red]No[/]")
                 .AddRow("Buy Price", $"[skyblue1]{BuyPrice.ToString()}[/]")
-                .AddRow("Sell Price", $"[skyblue1]{SellPrice.ToString()}[/]").BorderColor(Color.Yellow2));
+                .AddRow("Sell Price", $"[skyblue1]{SellPrice.ToString()}[/]")
+                .AddRow("Song Cover", SongCover.ToString()).BorderColor(Color.Yellow2));
     }
 }

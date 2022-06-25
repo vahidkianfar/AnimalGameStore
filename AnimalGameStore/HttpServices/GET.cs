@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Nodes;
 using AnimalGameStore.Models;
 using Newtonsoft.Json;
-
 namespace AnimalGameStore.HttpServices;
 
 public static class GET
@@ -12,7 +11,7 @@ public static class GET
         var response = await client.GetAsync($"https://acnhapi.com/v1/songs/{songID}");
         var responseString = await response.Content.ReadAsStringAsync();
         var song = JsonNode.Parse(responseString);
-        var mySong = new Songs()
+        var mySong = new Songs
         {
             Name = song!["name"]!["name-USen"]!.ToString(),
             BuyPrice = JsonConvert.DeserializeObject<int>(song["buy-price"]!.ToString()),
