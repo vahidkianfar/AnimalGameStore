@@ -16,17 +16,20 @@ public static class MainMenu
         {
             Console.Clear();
             var selectInstructionOption =
-                ConsoleHelper.MultipleChoice(true, "1. Art", "2. Fossil",
+                ConsoleHelper.MultipleChoice(true, "1. Song", "2. Art", "3. Fossil",
                     "3. Exit");
             switch (selectInstructionOption)
             {
                 case 0:
-                    await ArtMenu.Start();
+                    await SongMenu.Start();
                     break;
                 case 1:
-                    await FossilMenu.Start();
+                    await ArtMenu.Start();
                     break;
                 case 2:
+                    await FossilMenu.Start();
+                    break;
+                case 3:
                     Environment.Exit(0);
                     break;
             }

@@ -6,12 +6,30 @@ namespace AnimalGameStore.HttpServices;
 
 public static class GET
 {
+    public static async Task<Songs?> Song(int songID)
+    {
+        using var client = new HttpClient();
+        var response = await client.GetAsync($"https://acnhapi.com/v1/songs/{songID}");
+        var responseString = await response.Content.ReadAsStringAsync();
+        var song = JsonNode.Parse(responseString);
+        var mySong = new Songs()
+        {
+            Name = song!["name"]!["name-USen"]!.ToString(),
+            BuyPrice = JsonConvert.DeserializeObject<int>(song["buy-price"]!.ToString()),
+            SellPrice = JsonConvert.DeserializeObject<int>(song["sell-price"]!.ToString()),
+            isOrderable = (bool)song["isOrderable"]!,
+            SongDownload = new Uri(song["music_uri"]!.ToString()),
+            SongCover = new Uri(song["image_uri"]!.ToString()),
+        };
+        
+        return mySong;
+    }
     public static async Task<Fossils?> Fossil(string fossilName)
     {
         using var client = new HttpClient();
         using var response = await client.GetAsync($"https://acnhapi.com/v1/fossils/{fossilName}");
-        var json = await response.Content.ReadAsStringAsync();
-        var fossil = JsonNode.Parse(json);
+        var responseString = await response.Content.ReadAsStringAsync();
+        var fossil = JsonNode.Parse(responseString);
         var myFossil = new Fossils
         {
             Name = fossil!["name"]!["name-USen"]!.ToString(),
@@ -26,8 +44,8 @@ public static class GET
     {
         using var client = new HttpClient();
         using var response = await client.GetAsync($"https://acnhapi.com/v1/art/{artID}");
-        var json = await response.Content.ReadAsStringAsync();
-        var art = JsonNode.Parse(json);
+        var responseString = await response.Content.ReadAsStringAsync();
+        var art = JsonNode.Parse(responseString);
         var myArt = new Art
         {
             Name = art!["name"]!["name-USen"]!.ToString(),

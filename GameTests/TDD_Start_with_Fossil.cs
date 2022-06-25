@@ -59,7 +59,7 @@ public class Tests
         var result = await GET.Fossil("amber");
         Assert.Multiple(() =>
         {
-            Assert.That(result.Name, Is.EqualTo("amber"));
+            Assert.That(result!.Name, Is.EqualTo("amber"));
             Assert.That(result.Price, Is.EqualTo(1200));
             Assert.That(result.Photo, Is.EqualTo(new Uri("https://acnhapi.com/v1/images/fossils/amber")));
         });
