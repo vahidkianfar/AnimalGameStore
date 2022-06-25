@@ -6,4 +6,4 @@ more info: http://acnhapi.com/doc
 
 App Menu:
 
-![](https://github.com/vahidkianfar/AnimalGameStore/blob/master/AnimalGameStore/Gif/AnimalGameStore.gif)
+![](https://github.com/vahidkianfar/AnimalGameStore/blob/master/AnimalGameStore/Gif/AnimalGameStore-VS.gif)
