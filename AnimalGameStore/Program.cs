@@ -1,2 +1,2 @@
 ﻿using AnimalGameStore.UI;
-await MainMenu.Start();
+await Task.Run(MainMenu.Start);
