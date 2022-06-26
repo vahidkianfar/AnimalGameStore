@@ -1,4 +1,4 @@
-# AnimalGameStore
+# Animal Crrosing Game Store
 
 You can easily search for Song (by ID) , Fossil (by name) and Art (by ID) from Animal Crossing Game Store.
 
